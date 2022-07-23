@@ -1,7 +1,7 @@
 import { Router } from "express";
-import categoriesRouter from "./categoriesRouter";
+import categoriesRouter from "./categoriesRouter.js";
 
-const router = Router;
+const router = Router();
 
 router.use(categoriesRouter);
 
