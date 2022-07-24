@@ -12,16 +12,16 @@ const getCategories = async (req, res) => {
 
 const postCategories = async (req, res) => {
     const { name } = req.body;
-    const { error } = categoriesSchema.validate({name: name}, { abortEarly: false});
+    const { error: errorCategoriesSchema } = categoriesSchema.validate({name: name}, { abortEarly: false});
 
-    if (error) {
+    if (errorCategoriesSchema) {
         res.sendStatus(400);
         return;
     };
 
-    try {
-        const { rows: evaluatesRepeatedName } = await connection.query(`SELECT * FROM categories WHERE name = '${name}'`);
-        if (evaluatesRepeatedName[0]?.name) {
+    try { 
+        const { rows: evaluatesIfNameExists } = await connection.query(`SELECT * FROM categories WHERE name = '${name}'`);
+        if (evaluatesIfNameExists[0]) {
             res.sendStatus(409);
             return;
         };
