@@ -1,4 +1,3 @@
-import Trim from "trim";
 import connection from "../dbStrategy/postgres.js";
 import gamesSchema from "../schemas/gamesSchema.js";
 
@@ -43,10 +42,9 @@ const postGames = async (req, res) => {
             (name, image, "stockTotal", "categoryId", "pricePerDay")
             VALUES ('${game.name}', '${game.image}', '${game.stockTotal}', '${game.categoryId}', '${game.pricePerDay}')
         `);
-        res.status(200).send(insertGameInTableGames);
+        res.sendStatus(201);
         
     } catch (error) {
-        console.log("error:", error)
         res.status(500).send(error);
     };
 };

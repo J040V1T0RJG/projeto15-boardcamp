@@ -30,7 +30,7 @@ const getCustomersId = async (req, res) => {
             return;
         };
     
-        res.status(200).send(customersTableArray);
+        res.send(customersTableArray);
     } catch (error) {
         res.status(500).send(error);
     };
@@ -57,7 +57,7 @@ const postCustomers = async (req, res) => {
             (name, phone, cpf, birthday)
             VALUES ('${customer.name}', '${customer.phone}', '${customer.cpf}', '${customer.birthday}')
         `);
-        res.status(200).send(insertCustomerInTableCustomers);
+        res.sendStatus(201);
         
     } catch (error) {
         res.status(500).send(error);
@@ -89,7 +89,6 @@ const putCustomers = async (req, res) => {
         res.sendStatus(200);
 
     } catch (error) {
-        console.log(error)
         res.status(500).send(error);
     };
 };

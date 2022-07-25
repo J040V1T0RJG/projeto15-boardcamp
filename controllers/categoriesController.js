@@ -27,7 +27,7 @@ const postCategories = async (req, res) => {
         };
 
         const insertNameInsideCategory = await connection.query(`INSERT INTO categories (name) VALUES ('${name}')`);
-        res.status(201).send(insertNameInsideCategory);
+        res.sendStatus(201);
 
     } catch (error) {
         res.status(500).send(error);
